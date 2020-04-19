@@ -41,7 +41,7 @@ public class BatchConfiguration {
 
     @Bean
     public Job partitioningJob() throws Exception {
-        return jobBuilderFactory.get("parallelJob").incrementer(new RunIdIncrementer()).flow(masterStep()).end()
+        return jobBuilderFactory.get("partitioningJob").incrementer(new RunIdIncrementer()).flow(masterStep()).end()
                 .build();
     }
 
@@ -57,7 +57,6 @@ public class BatchConfiguration {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         partitioner.setResources(resolver.getResources("file://persona*"));
         return partitioner;
-
     }
 
     @Bean
